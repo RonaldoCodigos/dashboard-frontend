@@ -2,7 +2,7 @@
 
 Este é o front-end do projeto de Dashboard Financeiro Pessoal, construído com **React.js** e **Material-UI**. A aplicação consome uma API RESTful própria (construída com Node.js/Express/MongoDB) para criar, ler e deletar transações financeiras em tempo real.
 
-**Back-End do Projeto:** [Link para o seu repositório BACK-END no GitHub (vamos preencher isso depois)]
+**Back-End do Projeto:** https://github.com/RonaldoCodigos/dashboard-backend
 
 ## 🚀 Funcionalidades Principais
 
@@ -25,11 +25,11 @@ Este é o front-end do projeto de Dashboard Financeiro Pessoal, construído com 
 
 ## 🏁 Como Rodar (Localmente)
 
-**Pré-requisito:** O [servidor Back-End]([LINK_DO_BACKEND_AQUI]) deve estar rodando (`npm run dev`) na porta 3002.
+**Pré-requisito:** O [servidor Back-End](https://github.com/RonaldoCodigos/dashboard-backend) deve estar rodando (`npm run dev`) na porta 3002.
 
 1.  Clone este repositório:
     ```sh
-    git clone [SEU_LINK_AQUI]
+    git clone [https://github.com/RonaldoCodigos/dashboard-frontend.git](https://github.com/RonaldoCodigos/dashboard-frontend.git)
     ```
 2.  Entre na pasta:
     ```sh
