@@ -9,7 +9,8 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import SummaryCards from './SummaryCards.js';
 
-const API_URL = 'http://localhost:3002/api/transactions';
+// Linha corrigida:
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3002/api/transactions';
 
 function TransactionForm({ onTransactionAdded, showSnackbar }) {
   const [description, setDescription] = useState('');
