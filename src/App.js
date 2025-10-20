@@ -116,7 +116,10 @@ function App() {
 
     try {
       await axios.delete(`${API_URL}/${transactionToDelete}`);
-      setTransactions(transactions.filter((t) => t._id !== transactionToDelete));
+      // Linha CORRIGIDA:
+setTransactions(
+  Array.isArray(transactions) ? transactions.filter((t) => t._id !== transactionToDelete) : []
+);
       showSnackbar('Transação deletada com sucesso!', 'success');
     } catch (err) {
       console.error('Erro ao deletar transação:', err);
@@ -125,15 +128,23 @@ function App() {
     handleCloseDeleteDialog();
   };
 
-  const income = transactions
-    .filter((t) => t.type === 'entrada')
-    .reduce((acc, t) => acc + t.amount, 0); 
+// --- LÓGICA DE CÁLCULO (MAIS SEGURA) ---
+// Verifica se 'transactions' é um array antes de calcular
 
-  const outcome = transactions
-    .filter((t) => t.type === 'saída')
-    .reduce((acc, t) => acc + t.amount, 0);
+const income = Array.isArray(transactions) // <-- VERIFICAÇÃO
+  ? transactions
+      .filter((t) => t.type === 'entrada')
+      .reduce((acc, t) => acc + t.amount, 0)
+  : 0; // Se não for array, o valor é 0
 
-  const total = income + outcome;
+const outcome = Array.isArray(transactions) // <-- VERIFICAÇÃO
+  ? transactions
+      .filter((t) => t.type === 'saída')
+      .reduce((acc, t) => acc + t.amount, 0)
+  : 0; // Se não for array, o valor é 0
+
+const total = income + outcome;
+// ===================================
 
   return (
     <Container maxWidth="md">
