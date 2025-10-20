@@ -160,7 +160,7 @@ const total = income + outcome;
         <Typography variant="h6" gutterBottom>Transações Recentes</Typography>
         <Paper elevation={3}>
           <List>
-            {transactions.map((t) => (
+            {Array.isArray(transactions) && transactions.map((t) => (
               <ListItem key={t._id} divider>
                 <ListItemText
                   primary={t.description}
