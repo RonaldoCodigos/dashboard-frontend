@@ -9,8 +9,8 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import SummaryCards from './SummaryCards.js';
 
-// Linha corrigida:
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3002/api/transactions';
+// Linha CORRIGIDA:
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3002';
 
 function TransactionForm({ onTransactionAdded, showSnackbar }) {
   const [description, setDescription] = useState('');
@@ -25,7 +25,8 @@ function TransactionForm({ onTransactionAdded, showSnackbar }) {
     };
 
     try {
-      const response = await axios.post(API_URL, transactionData);
+      // Linha CORRIGIDA:
+const response = await axios.post(`${API_BASE_URL}/api/transactions`, transactionData);
       onTransactionAdded(response.data);
       showSnackbar('Transação adicionada com sucesso!', 'success');
       setDescription('');
@@ -75,7 +76,7 @@ function App() {
 
   const fetchTransactions = async () => {
     try {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(`${API_BASE_URL}/api/transactions`);
       setTransactions(response.data);
     } catch (err) {
       console.error('Erro ao buscar transações no front-end:', err);
@@ -115,8 +116,7 @@ function App() {
     if (!transactionToDelete) return;
 
     try {
-      await axios.delete(`${API_URL}/${transactionToDelete}`);
-      // Linha CORRIGIDA:
+     await axios.delete(`${API_BASE_URL}/api/transactions/${transactionToDelete}`);
 setTransactions(
   Array.isArray(transactions) ? transactions.filter((t) => t._id !== transactionToDelete) : []
 );
